@@ -23,6 +23,7 @@ class Reserva(db.Model):
     cliente_email = db.Column(db.String(100), nullable=False)
     fecha = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     servicio_id = db.Column(db.Integer, db.ForeignKey('servicio.id'), nullable=False)
+    servicio = db.relationship('Servicio', backref='reservas')  # Relación con Servicio
 
     def __repr__(self):
         return f'<Reserva {self.cliente_nombre} - {self.fecha}>'
